@@ -41,27 +41,38 @@ attr_accessor  :tortas
     arre
   end
 end
+
+#Drive Code
+
 tortas=["Jamon", "Chorizo","Pierna","Milanesa","Pollo"]
 horno_1=Horno.new
 p "Horno creado"
 p "Se preparan 3 tortas y se inicia el horno:"
 for i in 0..2
 horno_1.add_torta(Tortas.new(tortas[rand(4)]))
-horno_1.start_oven
 end
-p "Se preparan 3 tortas y se inicia el horno:"
-for i in 0..2
-horno_1.add_torta(Tortas.new(tortas[rand(4)]))
 horno_1.start_oven
-end
-p "Se preparan 3 tortas y se inicia el horno:"
-for i in 0..2
-horno_1.add_torta(Tortas.new(tortas[rand(4)]))
-horno_1.start_oven
-end
-p "Fin del ciclo"
+puts "\n\n"
 p "Get torta"
 p horno_1.get_torta
+p "Se preparan 3 tortas y se inicia el horno:"
+for i in 0..2
+horno_1.add_torta(Tortas.new(tortas[rand(4)]))
+end
+horno_1.start_oven
+puts "\n\n"
+p "Get torta"
+p horno_1.get_torta
+p "Se preparan 3 tortas y se inicia el horno:"
+for i in 0..2
+horno_1.add_torta(Tortas.new(tortas[rand(4)]))
+end
+horno_1.start_oven
+puts "\n\n"
+p "Get torta"
+p horno_1.get_torta
+puts "\n\n"
+p "Fin del ciclo"
 p "Tortas"
 p horno_1.tortas
 
