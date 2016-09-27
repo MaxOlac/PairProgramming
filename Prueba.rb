@@ -50,11 +50,14 @@ class PersonWriter
     end
   end
 end
+per=Person.new["first_name", "last_name", "email", "phone", "created_at"]
+p per
+
+# person_writer = PersonWriter.new("people.csv", people)
+# person_writer.create_csv
+# person_writer.imprime
 
 
-person_writer = PersonWriter.new("people.csv", people)
-person_writer.create_csv
-person_writer.imprime
 
 
 

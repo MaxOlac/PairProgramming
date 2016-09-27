@@ -16,14 +16,16 @@ class Person
     [@first_name, @last_name, @email, @phone, @created_at]
   end
 end
+
 def crea_personas(num)
   arre = []
   for i in 1..num
-    arre << Person.new(Faker::Name.first_name,Faker::Name.last_name,Faker::Internet.email,Faker::PhoneNumber.cell_phone, DateTime.parse(Time.now))
+    arre << Person.new(Faker::Name.first_name,Faker::Name.last_name,Faker::Internet.email,Faker::PhoneNumber.cell_phone, Time.now)
   end
   arre
 end
-people=crea_personas(2)
+
+people=crea_personas(10)
 
 class PersonWriter
   attr_accessor :file, :people
@@ -40,30 +42,32 @@ class PersonWriter
       end
     end
   end
-
-  # def imprime
-  #   CSV.foreach(@file) do |row|
-  #   p row
-  #   end
-  # end
 end
+
 class PersonParser
   def initialize(txt)
     @file = txt
   end
-  def peopel
+  def people
+    arre =[]
      CSV.foreach(@file) do |row|
-     p row
+      arre<<Person.new(row[0],row[1],row[2],row[3],row[4])
      end
+     arre
   end
 end
 
-person_writer = PersonWriter.new("people1.csv", people)
+
+
+
+person_writer = PersonWriter.new("people.csv", people)
 person_writer.create_csv
 
+#p CSV.read("people.csv")
+
 parser = PersonParser.new('people.csv')
-people = parser.people
+people2 = parser.people
 
-
-# parser = PersonParser.new('people.csv')
-# people = parser.people
+for i in 0..9
+  p people2[i].to_a
+end
