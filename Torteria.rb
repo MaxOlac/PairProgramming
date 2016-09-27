@@ -35,7 +35,10 @@ attr_accessor  :tortas
     num
   end
   def get_torta
-    @tortas.drop_while{|torta| torta.estado == "listo"}
+    arre = []
+    @tortas.each{|torta| arre << torta if torta.estado == "listo"}
+    @tortas.delete_if{|torta| torta.estado == "listo"}
+    arre
   end
 end
 tortas=["Jamon", "Chorizo","Pierna","Milanesa","Pollo"]
@@ -57,7 +60,9 @@ horno_1.add_torta(Tortas.new(tortas[rand(4)]))
 horno_1.start_oven
 end
 p "Fin del ciclo"
+p "Get torta"
 p horno_1.get_torta
+p "Tortas"
 p horno_1.tortas
 
 
