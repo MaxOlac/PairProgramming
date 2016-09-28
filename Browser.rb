@@ -43,18 +43,24 @@ class Page
   end
 end
 
-# class Browser
-#   def run!
-#     print "Dame un URL: \n"
-#     @url=gets.chomp
-#     while @url != "salir"
-#       pagina.to_s
-#       pagina=Page.new(@url)
-#       pagina.to_s
-#       print "Dame un URL: \n"
-#       @url=gets.chomp
-#     end
-#   end
-# end
+class Browser
+  def run!
+    url2=""
+    print "Dame un URL: \n"
+    @url1=gets.chomp
+    while @url1 != "salir"
+      url2=@url1
+      pagina=Page.new(@url1)
+      pagina.to_s
+      print "Dame un URL o escribe 'salir' para salir: \n"
+      @url1=gets.chomp
+      for i in 0..10  
+        if @url1 == $linkss[i].text
+          @url1=url2+$linkss[i]["href"]
+        end 
+      end  
+    end
+  end
+end
 
-# Browser.new.run!
+Browser.new.run!
