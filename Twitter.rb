@@ -55,5 +55,8 @@ twitter.extract_username
 twitter.extract_stats
 twitter.extract_tweets
 twitter.to_s
+<<<<<<< HEAD
 
 #https://blog.engineyard.com/2010/getting-started-with-nokogiri
+=======
+>>>>>>> c84d4d36315e097dc4688a283298e241ae31a0a2
