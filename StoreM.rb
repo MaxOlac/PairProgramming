@@ -18,3 +18,10 @@ def modelo_register(name,password)
   end
   count
 end
+
+def modelo_login_cliente(name,password)
+  CSV.foreach($clientes,headers:true) do |row|
+    if row['name'] == name && row['pass'] == password then return true end
+  end
+  false
+end

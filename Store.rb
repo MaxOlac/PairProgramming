@@ -22,13 +22,14 @@ class Store
 
   def option(index)
     case index
+      when 1
+        login
       when 2
         register
       else
         print "\nPerdone las molestias seguimos desarrollando\n"
     end
   end
-
   def register
     vista_user_name
     name = gets.chomp
@@ -36,7 +37,15 @@ class Store
     pass = STDIN.noecho(&:gets).chomp
     vista_register(modelo_register(name,pass))
   end
-
+  def login
+    vista_user_name
+    name = gets.chomp
+    vista_user_pass
+    pass = STDIN.noecho(&:gets).chomp
+    resp = modelo_login_cliente(name,pass)
+    vista_login_cliente(name,res)
+    if !res then login end
+  end
 end
 
 class Vendedor
