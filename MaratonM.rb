@@ -7,7 +7,7 @@ $arre_opciones = []
 $correctas = 0
 $incorrectas = 0 
 def modelo_start(int)
-  int == 1 ? deck = $file1 : deck = file2
+  int == 1 ? deck = $file1 : deck = $file2
   arrefile=[]
   CSV.foreach(deck) do |row|
     arrefile << row[0]

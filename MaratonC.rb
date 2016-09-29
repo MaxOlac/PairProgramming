@@ -9,7 +9,7 @@ class Maraton
   def start
     vista_start
     int = gets.chomp.to_i
-    raise "Error en la selección del Deck" unless (int == 0 || int == 1)
+    raise "Error en la selección del Deck" unless (int == 2 || int == 1)
     @ciclo_tam = modelo_start(int)
     preguntas(@index_pregunta)
   end 
