@@ -1,5 +1,5 @@
 require 'csv'
-$file='tareas.csv'
+$file = 'tareas.csv'
 
 def modelo_index
   CSV.read($file)
@@ -8,7 +8,7 @@ end
 #         print "#{count+=1}. #{row[0]}\n"
 # end
 def modelo_add(string)
-  string = "[ ] "+string 
+  string = "[ ] "+ string 
   CSV.open($file, "a+") do |csv|
         csv.puts([string])
   end
@@ -20,7 +20,7 @@ end
 
 def modelo_delete(index)
   tareas = CSV.read($file)
-  tarea =tareas[index][0].sub(/\[\]/,"")
+  tarea = tareas[index][0].sub(/\[\]/,"")
   tareas.delete_at(index)
   for  i in 0..tareas.size-1
     if i == 0  

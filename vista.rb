@@ -1,7 +1,7 @@
 def vista_index(array)
-  count=0
+  count = 0
   array.each do |element|
-    print "#{count+=1}. #{element[0]}\n"
+    print "#{count += 1}. #{element[0]}\n"
   end
 end
 def vista_add(string)
