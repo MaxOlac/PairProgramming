@@ -3,6 +3,11 @@ def vista_start
 end
 
 def vista_preguntas(string)
-print "Pregunta\n"
-print "#{string}\n\n"
+  print "Pregunta\n"
+  print "#{string}\n"
+end
+
+def vista_respuestas(string1,string2)
+  print "Intento: #{string1}\n"
+  print "#{string2}"
 end

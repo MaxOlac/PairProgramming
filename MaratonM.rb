@@ -15,5 +15,13 @@ def modelo_start
 end
 
 def modelo_preguntas(index)
+  $arre_preguntas[index]
+end
+
+def modelo_respuestas(index)
   $arre_respuestas[index]
 end
+
+def modelo_contador(int)
+  int == 0 ? $incorrectas += 1 : $correctas += 1
+end 
