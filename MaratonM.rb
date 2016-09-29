@@ -1,13 +1,15 @@
 require 'csv'
-$file='Deck1.csv'
+$file1 = 'Deck1.csv'
+$file2 = 'Deck2.csv'
 $arre_preguntas = []
 $arre_respuestas = []
 $arre_opciones = []
 $correctas = 0
 $incorrectas = 0 
-def modelo_start
+def modelo_start(int)
+  int == 1 ? deck = $file1 : deck = file2
   arrefile=[]
-  CSV.foreach($file) do |row|
+  CSV.foreach(deck) do |row|
     arrefile << row[0]
   end
   arrefile.compact!
