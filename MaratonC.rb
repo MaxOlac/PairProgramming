@@ -25,17 +25,15 @@ class Maraton
     if @index_pregunta < @ciclo_tam
       preguntas(@index_pregunta)
     else
-      respuestas = modulo_despido
+      respuestas = modelo_despido
       vista_despido(respuestas[0],respuestas[1])
-      break
-    end
+     end
   end
   def evaluacion(string1,string2)
     if string1 == string2 
       modelo_contador(1)
       "Correcto!" 
     else
-      p string2
       modelo_contador(0)
       "Incorrecto!"
     end
