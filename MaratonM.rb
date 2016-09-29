@@ -1,7 +1,8 @@
 require 'csv'
-$file='Preguntas.csv'
+$file='Deck1.csv'
 $arre_preguntas = []
 $arre_respuestas = []
+$arre_opciones = []
 $correctas = 0
 $incorrectas = 0 
 def modelo_start
@@ -10,13 +11,18 @@ def modelo_start
     arrefile << row[0]
   end
   arrefile.compact!
-  $arre_preguntas = arrefile.values_at(* arrefile.each_index.select {|i|i.even?})
-  $arre_respuestas = arrefile.values_at(* arrefile.each_index.select {|i|i.odd?})
-  $arre_preguntas.size  
+  for i in 0..9
+    $arre_preguntas << arrefile[i*5]
+    $arre_respuestas << arrefile[i*5+1]
+    $arre_opciones << arrefile[i*5+2..i*5+4]
+  end
+  $arre_preguntas.size 
 end
 
 def modelo_preguntas(index)
-  $arre_preguntas[index]
+  arre_aux=[]
+  arre_aux << $arre_preguntas[index]
+  arre_aux << $arre_opciones[index]
 end
 
 def modelo_respuestas(index)

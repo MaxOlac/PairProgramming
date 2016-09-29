@@ -14,7 +14,7 @@ class Maraton
   private
   def preguntas(index)
     pregunta = modelo_preguntas(index)
-    vista_preguntas(pregunta)
+    vista_preguntas(pregunta[0],pregunta[1][0],pregunta[1][1],pregunta[1][2])
     respuestas(index)
   end 
   def respuestas(index)

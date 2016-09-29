@@ -4,10 +4,13 @@ def vista_start
     #leep(1)
 end
 
-def vista_preguntas(string)
+def vista_preguntas(string1,string2,string3,string4)
   print "Pregunta\n"
   #sleep(1)
-  print "#{string}\n"
+  print "#{string1}\n"
+  print "#{string2}\n"
+  print "#{string3}\n"
+  print "#{string4}\n"
 end
 
 def vista_respuestas(string1,string2)
