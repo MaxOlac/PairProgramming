@@ -23,8 +23,17 @@ if !instruccion.empty?
      modelo_add(aux)
      vista_add(aux)
   when "delete"
+        bo = modelo_index_error(instruccion[1].to_i-1)
+        raise "Error en el index" unless bo 
         tarea=modelo_delete(instruccion[1].to_i-1)
         vista_delete(tarea)
+        index = modelo_index
+        vista_index(index)
+  when "complete"
+        bo = modelo_index_error(instruccion[1].to_i-1)
+        raise "Error en el index" unless bo 
+        tarea=modelo_complete(instruccion[1].to_i-1)
+        vista_complete(tarea)
         index = modelo_index
         vista_index(index)
   end

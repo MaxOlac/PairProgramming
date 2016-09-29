@@ -10,3 +10,6 @@ end
 def vista_delete(string)
   print "Eliminaste la tarea: '#{string}' de tu lista.\n"
 end
+def vista_complete(string)
+  print "Completaste la tarea: '#{string}' de tu lista.\n"
+end
