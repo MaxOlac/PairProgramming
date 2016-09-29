@@ -19,5 +19,5 @@ print "\nPassword: "
 end
 
 def vista_register(int)
-print int == 0 ? "\nInvalid 'User name' or 'Password' \n" : "\nCongratulations!! Successful Registration\n"
+print int != 0 ? "\nInvalid 'User name' or 'Password' \n" : "\nCongratulations!! Successful Registration\n"
 end

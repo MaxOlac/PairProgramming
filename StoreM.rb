@@ -1,16 +1,15 @@
 require 'csv'
 
 def modelo_start
-  $productos = CCV.read('Productos.csv', headers:true)
-  $clientes = CCV.read('Usuarios.csv', headers:true)
-  $vendedores = CCV.read('Vendedores.csv', headers:true)
+  $productos = 'Productos.csv'
+  $clientes = 'Usuarios.csv'
+  $vendedores = 'Vendedores.csv'
 end
 
 def modelo_register(name,password)
-  arrefile=[]
-  CSV.foreach($clientes) do |row|
-    arrefile << row[0]
+  count=0
+  CSV.foreach($clientes,headers:true) do |cliente|
+    if row['name']==name then count += 1 
   end
-  p arrefile
-  1
+  count
 end

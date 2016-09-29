@@ -2,6 +2,10 @@
 # print "Password: "
 # password = STDIN.noecho(&:gets).chomp
 # p password
-
-int = 10
-print int == 0 ? "cero\n" : "no es cero\n"
+require 'csv'
+productos = 'Productos.csv'
+pro=CSV.read('Productos.csv', headers:true).to_a
+p pro
+CSV.foreach(productos, headers:true) do |row|
+  puts row['producto']
+end
