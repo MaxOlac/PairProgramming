@@ -35,17 +35,24 @@ class Store
     name = gets.chomp
     vista_user_pass
     pass = STDIN.noecho(&:gets).chomp
-    vista_register(modelo_register(name,pass))
+    resp = modelo_register(name,pass)
+    vista_register(resp)
+    if !resp then register else start end
   end
   def login
     vista_user_name
     name = gets.chomp
     vista_user_pass
     pass = STDIN.noecho(&:gets).chomp
-    resp = modelo_login_cliente(name,pass)
-    vista_login_cliente(name,res)
-    if !res then login end
+    p resp = modelo_login_cliente(name,pass)
+    vista_login_cliente(name,resp)
+    if !resp 
+      login 
+    else 
+      Cliente.new(name).start
+     end
   end
+
 end
 
 class Vendedor
@@ -57,6 +64,11 @@ class Vendedor
 end
 
 class Clientes
+  def initialize(name)
+    @name = name
+  end
+  def start
+  end
 #logout
 #ver productos
 #comprar productos
