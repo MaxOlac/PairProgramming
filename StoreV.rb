@@ -19,7 +19,7 @@ print "\nPassword: "
 end
 
 def vista_register(bo)
-print !bo ? "\nInvalid 'User name' or 'Password' \n" : "\nCongratulations!! Successful Registration\n"
+print !bo ? "\nInvalid 'User name' or 'Password'. Type '1' to try again or 'exit' to select an other option. \n" : "\nCongratulations!! Successful Registration\n"
 end
 
 def vista_login_cliente(name)
@@ -31,7 +31,8 @@ def vista_login_cliente(name)
 end
 
 def vista_login_cliente_error
-  print "\n\nInvalid 'User name' or 'Password' please try again\n\n"
+  print "\n\nInvalid 'User name' or 'Password'.
+  Type '1' to try again or 'exit' to select an other option.\n"
 end
 
 def vista_exit_store
@@ -47,9 +48,15 @@ def vista_error
 end
 
 def vista_logout(name)
-  print "\n\n #{name.capitalize}, you have successfully logged out, goodbye!\n\n"
+  print "\n\n #{name.capitalize}, you have successfully logged out, goodbye!\n"
+  for i in 1..3
+    sleep(0.5)
+    print ".\n"
+  end
 end
-
+def vista_productos_cliente(array_products)
+  p array_products
+end
 
 
 

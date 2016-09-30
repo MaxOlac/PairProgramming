@@ -39,7 +39,12 @@ class Store
     pass = STDIN.noecho(&:gets).chomp
     resp = modelo_register(name,pass)
     vista_register(resp)
-    if !resp then register else start end
+    if !resp
+      @selected_option = gets.chomp
+      if @selected_option == "exit" then start else register end
+    else 
+      start 
+    end
   end
   def login
     vista_user_name
@@ -47,12 +52,13 @@ class Store
     vista_user_pass
     pass = STDIN.noecho(&:gets).chomp
     resp = modelo_login_cliente(name,pass)
-    if !resp 
+    if !resp  
       vista_login_cliente_error
-      login 
+      @selected_option = gets.chomp
+      if @selected_option == "exit" then start else login end 
     else 
-      Cliente.new(name).start
-     end
+      Cliente.new(name).start 
+    end
   end
   def exit_store
     vista_exit_store
@@ -86,9 +92,9 @@ class Cliente
       when 1
         logout
       when 2
-        products
-      when 3
-        shopping_Cart
+      products
+      # when 3
+      #   shopping_Cart
       else
         vista_error
         start
@@ -96,7 +102,12 @@ class Cliente
   end
   def logout
     vista_logout(@name)
-    mystore.start
+    $mystore.start
+  end
+  def products
+    vista_productos_cliente(modelo_productos_cliente)
+    #@selected_option = gets.chomp
+    exit
   end
 
 #ver productos
@@ -118,7 +129,7 @@ class Administrador
 #clientes
 end
 
-mystore = Store.new
-mystore.start
+$mystore = Store.new
+$mystore.start
 
 

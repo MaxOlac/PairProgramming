@@ -1,5 +1,5 @@
-id,producto,num_existencia
-1,manzana, 3
-1,pera,2
-1,sandia,3
-1,mango,10
+id,producto,precio,num_existencia
+1,manzana,10,3
+1,pera,5,2
+1,sandia,25,3
+1,mango,15,10
