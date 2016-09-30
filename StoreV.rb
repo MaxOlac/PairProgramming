@@ -21,14 +21,41 @@ end
 def vista_register(bo)
 print !bo ? "\nInvalid 'User name' or 'Password' \n" : "\nCongratulations!! Successful Registration\n"
 end
-def vista_login_cliente(name,bo)
-  if bo 
+
+def vista_login_cliente(name)
     print "\n\n#{name.capitalize}, welcome to the online store: Your type is Client.\n-------------------------------------------------------------------\n
     Select option number:\n
     1. Logout
     2. Products
     3. Shopping Cart\n\n"
-  else 
-    print "\n\nInvalid 'User name' or 'Password' please try again\n\n"
+end
+
+def vista_login_cliente_error
+  print "\n\nInvalid 'User name' or 'Password' please try again\n\n"
+end
+
+def vista_exit_store
+    print "\n\nYou have exited the store, goodbye!\n\n"
+end
+
+def vista_error
+  print "\nPerdone las molestias seguimos desarrollando\n"
+  for i in 1..3
+    sleep(1)
+    print "."
   end
 end
+
+def vista_logout(name)
+  print "\n\n #{name.capitalize}, you have successfully logged out, goodbye!\n\n"
+end
+
+
+
+
+
+
+
+
+
+

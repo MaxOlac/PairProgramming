@@ -6,11 +6,10 @@ require_relative 'StoreV.rb'
 class Store
 
   def initialize
-    start
     @selected_option
   end
 
-  private
+ 
 
   def start
     vista_welcome
@@ -19,16 +18,19 @@ class Store
     vista_selected_option(@selected_option)
     option(@selected_option)
   end
-
+  private
   def option(index)
     case index
       when 1
         login
       when 2
         register
+      when 4
+        exit_store
       else
-        print "\nPerdone las molestias seguimos desarrollando\n"
-    end
+        vista_error
+        start
+     end
   end
   def register
     vista_user_name
@@ -44,13 +46,17 @@ class Store
     name = gets.chomp
     vista_user_pass
     pass = STDIN.noecho(&:gets).chomp
-    p resp = modelo_login_cliente(name,pass)
-    vista_login_cliente(name,resp)
+    resp = modelo_login_cliente(name,pass)
     if !resp 
+      vista_login_cliente_error
       login 
     else 
       Cliente.new(name).start
      end
+  end
+  def exit_store
+    vista_exit_store
+    exit
   end
 
 end
@@ -63,16 +69,39 @@ class Vendedor
 #ventas
 end
 
-class Clientes
+class Cliente
   def initialize(name)
     @name = name
+    @shopping_cart=[]
+    @selected_option
   end
-  def start
+  def start 
+    vista_login_cliente(@name)
+    @selected_option = gets.chomp.to_i
+    vista_selected_option(@selected_option)
+    option(@selected_option)
   end
-#logout
+  def option(index)
+    case index
+      when 1
+        logout
+      when 2
+        products
+      when 3
+        shopping_Cart
+      else
+        vista_error
+        start
+     end
+  end
+  def logout
+    vista_logout(@name)
+    mystore.start
+  end
+
 #ver productos
 #comprar productos
-#productos en carrito
+#productos en carrito 
 #eliminar producto en carrito
 end
 
@@ -89,6 +118,7 @@ class Administrador
 #clientes
 end
 
-Store.new
+mystore = Store.new
+mystore.start
 
 
