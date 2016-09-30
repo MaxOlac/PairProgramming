@@ -21,7 +21,7 @@ print "\nPassword: "
 end
 # Imprime si el registro fue valido o mensage de error en caso de error
 def vista_register(bo)
-print !bo ? "\nInvalid 'User name' or 'Password'. Type '1' to try again or 'exit' to select an other option. \n" : "\nCongratulations!! Successful Registration\n"
+print !bo ? "\nInvalid 'User name' or 'Password'. Type '1' to try again or 'back' to select an other option. \n" : "\nCongratulations!! Successful Registration\n"
 end
 # Imprime 'Frontpage' para el Cliente
 def vista_login_cliente(name)
@@ -34,7 +34,7 @@ end
 # Mesaje de error en caso de login fallido 
 def vista_login_cliente_error
   print "\n\nInvalid 'User name' or 'Password'.
-  Type '1' to try again or 'exit' to select an other option.\n"
+  Type '1' to try again or 'back' to select an other option.\n"
 end
 # Mensaje de despedida
 def vista_exit_store
@@ -42,7 +42,7 @@ def vista_exit_store
 end
 # Mensaje de error en caso de opcion no valida
 def vista_error
-  print "\nPerdone las molestias seguimos desarrollando\n"
+  print "\nSorry about the inconvenience, site still under development.\n"
   for i in 1..3
     sleep(1)
     print "."
@@ -62,7 +62,7 @@ def vista_productos_cliente(array_products)
     print "\nProducts:\n-------------------------------------------------------------------\n"
     print "== 'Product' == 'Available Quantity' == 'Price per unit' \n\n"
     for i in 0..array_products.count-1
-      print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][2]).ljust(15)} ==      $ #{array_products[i][1].ljust(10)}\n"
+      print "#{i+1}.  #{(array_products[i][0]).ljust(7)} ==          #{(array_products[i][2]).ljust(15)} ==      $ #{array_products[i][1].ljust(10)}\n"
     end
     print "\nPut the number of the item you wish to add to your shopping cart.
      Or type 'back' to go back to the main menu. \n\n"  
@@ -82,19 +82,34 @@ def vista_selected_product(name)
 end
 
 def vista_add_product_client(num,name)
+  for i in 1..3
+    sleep(1)
+    print "."
+  end
   print "\nSuccessful added #{num} of product: '#{name}'\n"
+  sleep(1)
 end
-def vista_shopping_Cart(array_products)
+def vista_shopping_Cart(name,array_products)
   if array_products.size > 0
+    for i in 1..3
+      sleep(1)
+      print "."
+    end
     print "\nProducts:\n-------------------------------------------------------------------\n"
     print "== 'Product' == 'Quantity' == 'Total price' \n\n"
     for i in 0..array_products.count-1
-      print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][1]).ljust(15)} ==      $ #{array_products[i][2].ljust(10)}\n"
+      print "#{i+1}.  #{(array_products[i][0]).ljust(8)} ==       #{(array_products[i][1]).ljust(5)} ==      $ #{array_products[i][2].to_s.ljust(5)}\n"
     end
-    #print "\nPut the number of the item you wish to add to your shopping cart.
-     #Or type 'back' to go back to the main menu. \n\n"  
+    print "\n\n#{name.capitalize}:\n-------------------------------------------------------------------\n
+    Please select option number:\n
+    1. Back
+    2. Delete Product\n\n" 
    else
     print "\nSorry! No products available in your cart at this time, add some products!\n"
+    for i in 1..3
+      sleep(1)
+      print "."
+    end
    end
 end
 
