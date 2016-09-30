@@ -113,30 +113,31 @@ class Cliente
   def products_aux(productos_array)
     @selected_option = gets.chomp
     if @selected_option.to_i.between?(1,productos_array.size)|| @selected_option == 'back'
-       products_aux2(@selected_option,productos_array)
+       if @selected_option == "back" then start end
+          vista_selected_product(productos_array[@selected_option.to_i-1][0])
+          products_aux2(productos_array,@selected_option)
         #verificar cantidad
         #agregar el producto al carrito
         #imprimir mensaje de agregado 
     else
         vista_selected_option_error
-        @selected_option = gets.chomp
-        products_aux(productos_array0,)
+        products_aux(productos_array)
     end
   end
-  def products_aux2(answer,array)
-    if answer == "back" then start end
-    vista_selected_product(array[answer.to_i-1][0])
+  def products_aux2(array,answer)
     @selected_option = gets.chomp
-    if @selected_option.to_i.between(1..array[answer.to_i-1][1].to_i)
-      p "Todo bien"
-    else
-      vista_selected_option_error
-      products_aux2(answer,array)
-    end
+    if @selected_option == "back" then start end
+      if @selected_option.to_i.between?(1,array[answer.to_i-1][2].to_i)
+        vista_add_product_client(@selected_option,array[answer.to_i-1][0])
+        #mensaje de agregado
+        #agregar a carrito
+      else
+        vista_selected_option_error
+        products_aux2(array,answer)
+      end
   end
 
-#ver productos
-#comprar productos
+
 #productos en carrito 
 #eliminar producto en carrito
 end

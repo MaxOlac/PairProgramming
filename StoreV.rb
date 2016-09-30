@@ -62,7 +62,7 @@ def vista_productos_cliente(array_products)
     print "\nProductos:\n-------------------------------------------------------------------\n"
     print "== 'Producto' == 'Cantidad en existencia' == 'Precio por unidad' \n\n"
     for i in 0..array_products.count-1
-      print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][1]).ljust(15)} ==      $ #{array_products[i][2].ljust(10)}\n"
+      print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][2]).ljust(15)} ==      $ #{array_products[i][1].ljust(10)}\n"
     end
     print "\nPut the number of the item you wish to add to your shopping cart.
      Or type 'back' to go back to the main menu. \n\n"  
@@ -72,7 +72,7 @@ def vista_productos_cliente(array_products)
 end
 
 def vista_selected_option_error
-  "\nInvalid option, please try again.
+  print "\nInvalid option, please try again.
     Or type 'back' to go back to the main menu. \n\n"
 end
 
@@ -81,6 +81,10 @@ def vista_selected_product(name)
     Quantity?\n"
 end
 
+def vista_add_product_client(num,name)
+  print "\nSuccessful added #{num} of '#{name}'\n"
+
+end
 
 
 
