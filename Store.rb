@@ -105,9 +105,34 @@ class Cliente
     $mystore.start
   end
   def products
-    vista_productos_cliente(modelo_productos_cliente)
-    #@selected_option = gets.chomp
-    exit
+    productos_array = modelo_productos_cliente
+    vista_productos_cliente(productos_array)
+    if productos_array.size == 0 then start end
+    products_aux(productos_array)
+  end
+  def products_aux(productos_array)
+    @selected_option = gets.chomp
+    if @selected_option.to_i.between?(1,productos_array.size)|| @selected_option == 'back'
+       products_aux2(@selected_option,productos_array)
+        #verificar cantidad
+        #agregar el producto al carrito
+        #imprimir mensaje de agregado 
+    else
+        vista_selected_option_error
+        @selected_option = gets.chomp
+        products_aux(productos_array0,)
+    end
+  end
+  def products_aux2(answer,array)
+    if answer == "back" then start end
+    vista_selected_product(array[answer.to_i-1][0])
+    @selected_option = gets.chomp
+    if @selected_option.to_i.between(1..array[answer.to_i-1][1].to_i)
+      p "Todo bien"
+    else
+      vista_selected_option_error
+      products_aux2(answer,array)
+    end
   end
 
 #ver productos

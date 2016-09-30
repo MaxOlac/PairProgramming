@@ -31,7 +31,7 @@ end
 def modelo_productos_cliente
   array_products=[]
   CSV.foreach($productos,headers:true) do |row|
-    array_products << [row['producto'],row['precio'],row['num_existenciao']]
+    array_products << [row['producto'],row['precio'],row['num_existencia']]
   end
   array_products
 end
