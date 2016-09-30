@@ -93,8 +93,8 @@ class Cliente
         logout
       when 2
       products
-      # when 3
-      #   shopping_Cart
+      when 3
+        shopping_Cart
       else
         vista_error
         start
@@ -113,15 +113,12 @@ class Cliente
   def products_aux(productos_array)
     @selected_option = gets.chomp
     if @selected_option.to_i.between?(1,productos_array.size)|| @selected_option == 'back'
-       if @selected_option == "back" then start end
-          vista_selected_product(productos_array[@selected_option.to_i-1][0])
-          products_aux2(productos_array,@selected_option)
-        #verificar cantidad
-        #agregar el producto al carrito
-        #imprimir mensaje de agregado 
+      if @selected_option == "back" then start end
+      vista_selected_product(productos_array[@selected_option.to_i-1][0])
+      products_aux2(productos_array,@selected_option)
     else
-        vista_selected_option_error
-        products_aux(productos_array)
+      vista_selected_option_error
+      products_aux(productos_array)
     end
   end
   def products_aux2(array,answer)
@@ -129,17 +126,19 @@ class Cliente
     if @selected_option == "back" then start end
       if @selected_option.to_i.between?(1,array[answer.to_i-1][2].to_i)
         vista_add_product_client(@selected_option,array[answer.to_i-1][0])
-        #mensaje de agregado
-        #agregar a carrito
+        p @shopping_cart << [array[answer.to_i-1][0],@selected_option,@selected_option.to_i*array[answer.to_i-1][1].to_i]
       else
         vista_selected_option_error
         products_aux2(array,answer)
       end
   end
+  def shopping_Cart
+    vista_shopping_Cart(@shopping_cart)
+    if @shopping_cart.size == 0 then start end
+  end
 
 
-#productos en carrito 
-#eliminar producto en carrito
+
 end
 
 class Administrador

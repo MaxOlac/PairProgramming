@@ -59,8 +59,8 @@ end
 # Imprime los productos con formato
 def vista_productos_cliente(array_products)
   if array_products.size > 0
-    print "\nProductos:\n-------------------------------------------------------------------\n"
-    print "== 'Producto' == 'Cantidad en existencia' == 'Precio por unidad' \n\n"
+    print "\nProducts:\n-------------------------------------------------------------------\n"
+    print "== 'Product' == 'Available Quantity' == 'Price per unit' \n\n"
     for i in 0..array_products.count-1
       print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][2]).ljust(15)} ==      $ #{array_products[i][1].ljust(10)}\n"
     end
@@ -82,10 +82,21 @@ def vista_selected_product(name)
 end
 
 def vista_add_product_client(num,name)
-  print "\nSuccessful added #{num} of '#{name}'\n"
-
+  print "\nSuccessful added #{num} of product: '#{name}'\n"
 end
-
+def vista_shopping_Cart(array_products)
+  if array_products.size > 0
+    print "\nProducts:\n-------------------------------------------------------------------\n"
+    print "== 'Product' == 'Quantity' == 'Total price' \n\n"
+    for i in 0..array_products.count-1
+      print "#{i+1}.  #{(array_products[i][0]).ljust(9)} ==          #{(array_products[i][1]).ljust(15)} ==      $ #{array_products[i][2].ljust(10)}\n"
+    end
+    #print "\nPut the number of the item you wish to add to your shopping cart.
+     #Or type 'back' to go back to the main menu. \n\n"  
+   else
+    print "\nSorry! No products available in your cart at this time, add some products!\n"
+   end
+end
 
 
 
