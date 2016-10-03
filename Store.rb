@@ -149,6 +149,9 @@ class Cliente
     if @selected_option.to_i.between?(1,productos_array.size)|| @selected_option == 'back'
       if @selected_option == "back" 
         start 
+      elsif productos_array[@selected_option.to_i-1][2].to_i == 0
+        vista_soldout
+        products_aux(productos_array)
       else
         vista_selected_product(productos_array[@selected_option.to_i-1][0])
         products_aux2(productos_array,@selected_option)
@@ -173,9 +176,11 @@ class Cliente
       products_aux2(array,answer)
     end
   end
+
   def sale(index,quantity)
     @products[index][2] = (@products[index][2].to_i - quantity.to_i).to_s
   end
+
   def shopping_Cart
     vista_shopping_Cart(@name,@shopping_cart)
     if @shopping_cart.size == 0
@@ -184,12 +189,32 @@ class Cliente
       @selected_option = gets.chomp
       if @selected_option == "1" 
         start 
-        #elsif delete_product
+      elsif @selected_option == "2" 
+        vista_delete_pruduct2(delete_product)
+        shopping_Cart
       else 
         vista_error 
       end
     end
   end
+
+  def delete_product
+    vista_delete_pruduct1
+    @selected_option = gets.chomp
+    if @selected_option.to_i.between?(1,@shopping_cart.size)|| @selected_option == 'back'
+      if @selected_option == 'back'
+        shopping_Cart
+      else
+        aux =  @shopping_cart[@selected_option.to_i-1]
+        @shopping_cart.delete_at(@selected_option.to_i-1)
+        return aux
+      end
+    else
+      vista_selected_option_error
+      delete_product
+    end
+  end
+
 
 
 

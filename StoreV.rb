@@ -89,6 +89,7 @@ def vista_add_product_client(num,name)
   print "\nSuccessful added #{num} of product: '#{name}'\n"
   sleep(1)
 end
+
 def vista_shopping_Cart(name,array_products)
   if array_products.size > 0
     for i in 1..3
@@ -113,5 +114,16 @@ def vista_shopping_Cart(name,array_products)
    end
 end
 
+def vista_soldout
+  print "\nSorry, there are no more products available.
+  Please select another product or type 'back' to go to the 'Main Menu'\n"
+end
 
+def vista_delete_pruduct1
+print "\n Choose the number of the item you wish to delete or type 'back' to go BACK\n"
+end
+
+def vista_delete_pruduct2(delete_product)
+print "\n You have deleted #{delete_product[1]} #{delete_product[0]}\n"
+end
 
