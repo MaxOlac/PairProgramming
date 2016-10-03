@@ -35,3 +35,30 @@ def modelo_productos_cliente
   end
   array_products
 end
+#Verifica que el user name y el password esten en la BD y coincidan
+#Si coinciden, regresa 'true'; de lo contrario, regresa 'false'
+def modelo_login_vendedor(name,password)
+  CSV.foreach($vendedores,headers:true) do |row|
+    if row['name'] == name && row['pass'] == password then return true end
+  end
+  false
+end
+def modelo_add_product(name,price,quantity)
+    CSV.open($productos, "a+") do |csv|
+      csv << [name,price,quantity]
+    end 
+end
+def modelo_delete_product(index)
+  aux = CSV.read($productos,headers:true)
+  aux = aux.to_a
+  aux.delete_at(index)
+  aux.delete_at(0)
+  CSV.open($productos, "w") do |csv|
+     csv << ["producto","precio","num_existencia"]
+  end 
+  aux.each do |row|
+    CSV.open($productos, "a+") do |csv|
+       csv << row
+    end
+  end 
+end

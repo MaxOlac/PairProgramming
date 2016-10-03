@@ -25,6 +25,8 @@ class Store
         login
       when 2
         register
+      when 3
+        vendedor
       when 4
         exit_store
       else
@@ -73,6 +75,32 @@ class Store
     end
   end
 
+  def vendedor
+    vista_user_name
+    name = gets.chomp
+    vista_user_pass
+    pass = STDIN.noecho(&:gets).chomp
+    resp = modelo_login_vendedor(name,pass)
+    if !resp  
+      vista_login_cliente_error
+      vendedor_error
+    else 
+      Vendedor.new(name).start 
+    end
+  end
+
+  def vendedor_error
+      @selected_option = gets.chomp
+      if @selected_option == "back" 
+        start 
+      elsif @selected_option == "1" 
+        vendedor
+      else 
+        vista_selected_option_error 
+        vendedor_error
+      end
+  end
+
   def login_error
       @selected_option = gets.chomp
       if @selected_option == "back" 
@@ -89,15 +117,83 @@ class Store
     vista_exit_store
     exit
   end
-
 end
 
 class Vendedor
-#logout
-#agregar productos
-#eliminar producto
-#productos en existencia
-#ventas
+  def initialize(name)
+    @name = name
+    @selected_option
+    @products=modelo_productos_cliente
+  end
+  def start
+    @products=modelo_productos_cliente
+    vista_vendedor(@name)
+    @selected_option = gets.chomp.to_i
+    vista_selected_option(@selected_option)
+    option(@selected_option)
+  end
+  def option(index)
+    case index
+      when 1
+        logout
+      when 2
+        products
+      when 3
+        add_product
+      else
+        vista_error
+        start
+     end
+  end
+  def logout
+    vista_logout(@name)
+    $mystore.start
+  end
+  def products
+    vista_productos_vendedor(@products)
+    @selected_option = gets.chomp
+    vista_selected_option(@selected_option)
+    products_aux(@selected_option.to_i)
+  end
+  def products_aux(index)
+    case index
+      when 1
+        add_product
+      when 2
+        delete_product
+      when 3
+        start
+      else
+        vista_selected_option_error
+        @selected_option = gets.chomp
+        products_aux(@selected_option.to_i)    
+    end
+  end
+  def add_product
+    product=[]
+    vista_add_product(0)
+    product << gets.chomp
+    vista_add_product(1)
+    product << gets.chomp
+    vista_add_product(2)
+    product << gets.chomp
+    modelo_add_product(product[0],product[1],product[2])
+    vista_add_product(3)
+    start
+  end
+  def delete_product
+    vista_delete_product_vendedor(0)
+    @selected_option = gets.chomp
+    if @selected_option.to_i.between?(1,@products.size)|| @selected_option == 'back'
+      if @selected_option == "back" 
+        products
+      else
+      modelo_delete_product(@selected_option.to_i)
+      vista_delete_product_vendedor(1)
+      start
+      end
+    end
+  end
 end
 
 class Cliente
@@ -214,23 +310,6 @@ class Cliente
       delete_product
     end
   end
-
-
-
-
-end
-
-class Administrador
-#logout
-#agregar productos
-#eliminar producto
-#agregar clientes
-#eliminar cliente
-#agregar vendedores
-#eliminar vendedores
-#productos en existencia
-#vendedores
-#clientes
 end
 
 $mystore = Store.new

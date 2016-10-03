@@ -126,4 +126,47 @@ end
 def vista_delete_pruduct2(delete_product)
 print "\n You have deleted #{delete_product[1]} #{delete_product[0]}\n"
 end
+def vista_vendedor(name)
+print "\n\n#{name.capitalize}, welcome to the online store: Your type is Vendedor.\n-------------------------------------------------------------------\n
+    Select option number:\n
+    1. Logout
+    2. Products
+    3. Add Product\n\n"
+end
+def vista_productos_vendedor(array_products)
+  if array_products.size > 0
+    print "\nProducts:\n-------------------------------------------------------------------\n"
+    print "== 'Product' == 'Available Quantity' == 'Price per unit' \n\n"
+    for i in 0..array_products.count-1
+      print "#{i+1}.  #{(array_products[i][0]).ljust(7)} ==          #{(array_products[i][2]).ljust(15)} ==      $ #{array_products[i][1].ljust(10)}\n"
+    end
+    print "\n\nPlease select option number:\n
+    1. Add Product
+    2. Delete Product
+    3. Back\n\n" 
+   else
+    print "\nSorry! No products available at this time, come back later!\n"
+   end
+end
+def vista_add_product(index)
+  case index
+    when 0
+      print "\n Name:"
+    when 1
+      print "\n Price:"
+    when 2
+      print "\n Quantity:"
+    when 3
+      print "\n Product succesfully added, plase wait\n"
+      sleep(3)
+  end    
+end
 
+def vista_delete_product_vendedor(index)
+  if index == 0
+    print "\n Choose the number of the item you wish to delete or type 'back' to go BACK\n"
+    else
+    print "\n Product succesfully deleted, plase wait\n"
+    sleep(3)
+  end
+end
